@@ -67,7 +67,7 @@ int main(int argc, char *argv[])
 
     	} else {
     		/* Imprime el mensaje cabecera del proceso "0" y el total de procesos */
-    		printf("Mensaje recibidos por el proceso_%d \n", my_rank);
+    		printf("Mensajes recibidos por el proceso_%d \n", my_rank);
     		/* Metodo que recibe el mensaje, posee los mismos 6 argumentos del metodo send */
 
     		MPI_Recv(smSong, MAX_STRING, MPI_CHAR, 1, 0, MPI_COMM_WORLD, &estado);

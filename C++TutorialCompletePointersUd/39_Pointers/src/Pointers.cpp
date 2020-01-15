@@ -18,9 +18,7 @@ void manipulate(double *pValue) {
 int main() {
 
 	int nValue = 8;
-
 	int *pnValue = &nValue;
-
 	// *pnValue = 6;
 
 	cout << "Int value: " << nValue << endl;

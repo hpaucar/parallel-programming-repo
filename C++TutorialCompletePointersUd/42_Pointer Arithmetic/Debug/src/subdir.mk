@@ -4,20 +4,20 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
-../src/Pointer\ Arithmetic.cpp 
+../src/PointerArithmetic.cpp 
 
 OBJS += \
-./src/Pointer\ Arithmetic.o 
+./src/PointerArithmetic.o 
 
 CPP_DEPS += \
-./src/Pointer\ Arithmetic.d 
+./src/PointerArithmetic.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes
-src/Pointer\ Arithmetic.o: ../src/Pointer\ Arithmetic.cpp
+src/%.o: ../src/%.cpp
 	@echo 'Building file: $<'
 	@echo 'Invoking: GCC C++ Compiler'
-	g++ -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"src/Pointer Arithmetic.d" -MT"src/Pointer\ Arithmetic.d" -o "$@" "$<"
+	g++ -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 
