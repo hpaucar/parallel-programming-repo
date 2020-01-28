@@ -4,13 +4,13 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
-../src/ProductoEscalarSecu.cpp 
+../src/ProductoEscalarParall.cpp 
 
 OBJS += \
-./src/ProductoEscalarSecu.o 
+./src/ProductoEscalarParall.o 
 
 CPP_DEPS += \
-./src/ProductoEscalarSecu.d 
+./src/ProductoEscalarParall.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes

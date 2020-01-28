@@ -43,7 +43,7 @@
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
-						<entry excluding="Add_VectorParallel.c|mpi_trap3.c|mpi_trap2.c|mpi_trap1.c|CalculoPI_Secuencial.cpp" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src"/>
+						<entry excluding="Add_VectorSequential.c|mpi_trap3.c|mpi_trap2.c|mpi_trap1.c|CalculoPI_Secuencial.cpp" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src"/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>
@@ -91,7 +91,7 @@
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
-						<entry excluding="Add_VectorParallel.c|mpi_trap3.c|mpi_trap2.c|mpi_trap1.c|CalculoPI_Secuencial.cpp" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src"/>
+						<entry excluding="Add_VectorSequential.c|mpi_trap3.c|mpi_trap2.c|mpi_trap1.c|CalculoPI_Secuencial.cpp" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src"/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>

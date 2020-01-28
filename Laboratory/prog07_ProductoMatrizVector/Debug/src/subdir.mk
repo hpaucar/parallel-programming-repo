@@ -4,13 +4,13 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
-../src/ProdMatrizVectorSecu.cpp 
+../src/ProdMatrizVectorParall.cpp 
 
 OBJS += \
-./src/ProdMatrizVectorSecu.o 
+./src/ProdMatrizVectorParall.o 
 
 CPP_DEPS += \
-./src/ProdMatrizVectorSecu.d 
+./src/ProdMatrizVectorParall.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes

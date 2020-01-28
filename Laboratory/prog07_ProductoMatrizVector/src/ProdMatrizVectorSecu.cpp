@@ -6,12 +6,11 @@ using namespace std;
 
 int main(int argc, char * argv[]) {
 
-	long **A, // Matriz a multiplicar
+	long 	**A, // Matriz a multiplicar
 			*x, // Vector que vamos a multiplicar
 			*comprueba; // Guarda el resultado final (calculado secuencialmente), su valor
 
 	int n;
-
 	if (argc <= 1) { // si no se pasa por parametro el tamaño de la matriz,
 					 //se coge por defecto el numero de procesadores
 		cout << "Falta el tamanio de la matriz, por defecto cogemos 10" << endl;

@@ -7,8 +7,8 @@ using namespace std;
 
 int main(int argc, char * argv[]) {
 
-    int numeroProcesadores,
-            idProceso;
+    int rank_sz,
+            my_rank;
     long **A, // Matriz a multiplicar
             *x, // Vector que vamos a multiplicar
             *y, // Vector donde almacenamos el resultado
@@ -20,31 +20,31 @@ int main(int argc, char * argv[]) {
             tFin; // Tiempo en el que acaba la ejecucion
 
     MPI_Init(&argc, &argv);
-    MPI_Comm_size(MPI_COMM_WORLD, &numeroProcesadores);
-    MPI_Comm_rank(MPI_COMM_WORLD, &idProceso);
+    MPI_Comm_size(MPI_COMM_WORLD, &rank_sz);
+    MPI_Comm_rank(MPI_COMM_WORLD, &my_rank);
 
-    A = new long *[numeroProcesadores]; // Reservamos tantas filas como procesos haya
-    x = new long [numeroProcesadores]; // El vector sera del mismo tamanio que el numero
+    A = new long *[rank_sz]; // Reservamos tantas filas como procesos haya
+    x = new long [rank_sz]; // El vector sera del mismo tamanio que el numero
     // de procesadores
 
     // Solo el proceso 0 ejecuta el siguiente bloque
-    if (idProceso == 0) {
-        A[0] = new long [numeroProcesadores * numeroProcesadores];
-        for (unsigned int i = 1; i < numeroProcesadores; i++) {
-            A[i] = A[i - 1] + numeroProcesadores;
+    if (my_rank == 0) {
+        A[0] = new long [rank_sz * rank_sz];
+        for (unsigned int i = 1; i < rank_sz; i++) {
+            A[i] = A[i - 1] + rank_sz;
         }
-        // Reservamos especio para el resultado
-        y = new long [numeroProcesadores];
+        // Reservamos espacio para el resultado
+        y = new long [rank_sz];
 
         // Rellenamos 'A' y 'x' con valores aleatorios
         srand(time(0));
         cout << "La matriz y el vector generados son " << endl;
-        for (unsigned int i = 0; i < numeroProcesadores; i++) {
-            for (unsigned int j = 0; j < numeroProcesadores; j++) {
+        for (unsigned int i = 0; i < rank_sz; i++) {
+            for (unsigned int j = 0; j < rank_sz; j++) {
                 if (j == 0) cout << "[";
                 A[i][j] = rand() % 1000;
                 cout << A[i][j];
-                if (j == numeroProcesadores - 1) cout << "]";
+                if (j == rank_sz - 1) cout << "]";
                 else cout << "  ";
             }
             x[i] = rand() % 100;
@@ -53,33 +53,33 @@ int main(int argc, char * argv[]) {
         cout << "\n";
 
         // Reservamos espacio para la comprobacion
-        comprueba = new long [numeroProcesadores];
+        comprueba = new long [rank_sz];
         // Lo calculamos de forma secuencial
-        for (unsigned int i = 0; i < numeroProcesadores; i++) {
+        for (unsigned int i = 0; i < rank_sz; i++) {
             comprueba[i] = 0;
-            for (unsigned int j = 0; j < numeroProcesadores; j++) {
+            for (unsigned int j = 0; j < rank_sz; j++) {
                 comprueba[i] += A[i][j] * x[j];
             }
         }
     } // Termina el trozo de codigo que ejecuta solo 0
 
     // Reservamos espacio para la fila local de cada proceso
-    miFila = new long [numeroProcesadores];
+    miFila = new long [rank_sz];
 
     // Repartimos una fila por cada proceso, es posible hacer la reparticion de esta
     // manera ya que la matriz esta creada como un unico vector.
     MPI_Scatter(A[0], // Matriz que vamos a compartir
-            numeroProcesadores, // Numero de columnas a compartir
+            rank_sz, // Numero de columnas a compartir
             MPI_LONG, // Tipo de dato a enviar
             miFila, // Vector en el que almacenar los datos
-            numeroProcesadores, // Numero de columnas a compartir
+            rank_sz, // Numero de columnas a compartir
             MPI_LONG, // Tipo de dato a recibir
             0, // Proceso raiz que envia los datos
             MPI_COMM_WORLD); // Comunicador utilizado (En este caso, el global)
 
     // Compartimos el vector entre todas los procesos
     MPI_Bcast(x, // Dato a compartir
-            numeroProcesadores, // Numero de elementos que se van a enviar y recibir
+            rank_sz, // Numero de elementos que se van a enviar y recibir
             MPI_LONG, // Tipo de dato que se compartira
             0, // Proceso raiz que envia los datos
             MPI_COMM_WORLD); // Comunicador utilizado (En este caso, el global)
@@ -92,7 +92,7 @@ int main(int argc, char * argv[]) {
     tInicio = MPI_Wtime();
 
     long subFinal = 0;
-    for (unsigned int i = 0; i < numeroProcesadores; i++) {
+    for (unsigned int i = 0; i < rank_sz; i++) {
         subFinal += miFila[i] * x[i];
     }
 
@@ -122,12 +122,12 @@ int main(int argc, char * argv[]) {
     // condicion si vamos a ejecutar mas codigo (Por ejemplo, con "if(rank==0)".
     MPI_Finalize();
 
-    if (idProceso == 0) {
+    if (my_rank == 0) {
 
         unsigned int errores = 0;
 
         cout << "El resultado obtenido y el esperado son:" << endl;
-        for (unsigned int i = 0; i < numeroProcesadores; i++) {
+        for (unsigned int i = 0; i < rank_sz; i++) {
             cout << "\t" << y[i] << "\t|\t" << comprueba[i] << endl;
             if (comprueba[i] != y[i])
                 errores++;
@@ -143,11 +143,8 @@ int main(int argc, char * argv[]) {
             cout << "No hubo errores" << endl;
             cout << "El tiempo tardado ha sido " << tFin - tInicio << " segundos." << endl;
         }
-
     }
-
     delete [] x;
     delete [] A;
     delete [] miFila;
-
 }
