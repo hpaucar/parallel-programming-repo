@@ -38,19 +38,19 @@ endif
 # Add inputs and outputs from these tool invocations to the build variables 
 
 # All Target
-all: FirstMPIProject
+all: prog05.3_NumbersAvg
 
 # Tool invocations
-FirstMPIProject: $(OBJS) $(USER_OBJS)
+prog05.3_NumbersAvg: $(OBJS) $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: GCC C++ Linker'
-	mpic++  -o "FirstMPIProject" $(OBJS) $(USER_OBJS) $(LIBS)
+	mpic++  -o "prog05.3_NumbersAvg" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) $(CC_DEPS)$(C++_DEPS)$(EXECUTABLES)$(C_UPPER_DEPS)$(CXX_DEPS)$(OBJS)$(CPP_DEPS)$(C_DEPS) FirstMPIProject
+	-$(RM) $(CC_DEPS)$(C++_DEPS)$(EXECUTABLES)$(C_UPPER_DEPS)$(CXX_DEPS)$(OBJS)$(CPP_DEPS)$(C_DEPS) prog05.3_NumbersAvg
 	-@echo ' '
 
 .PHONY: all clean dependents
