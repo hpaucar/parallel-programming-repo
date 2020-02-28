@@ -1,2 +1,2 @@
 # parallel-programming-repo
-Welcome! This repository is to course Parallel Programming of the FISI-UNMSM
+Welcome! This repository is to Parallel Programming course in FISI-UNMSM
