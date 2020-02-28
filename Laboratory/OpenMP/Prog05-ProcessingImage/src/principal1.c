@@ -3,7 +3,6 @@
   * debes definir la constante durante la compilación
   * gracias a la opción -D:
   * gcc principal.c -otest -DPARALLEL = N -fopenmp -Wall
-
 ********************************************************/
 
 #include <stdio.h>
@@ -33,9 +32,10 @@ typedef struct grey_image_struct
 
 /**********************************************************************/
 color_image_type * loadColorImage(char *filename){
-  int i, width,height,max_value;
+  int i, width, height, max_value;
   char format[8];
   color_image_type * image;
+  // Lectura del Archivo
   FILE * f = fopen(filename,"r");
   if (!f){
     fprintf(stderr,"Cannot open file %s...\n",filename);
@@ -68,8 +68,9 @@ color_image_type * loadColorImage(char *filename){
   return image;
 }
 
-/**********************************************************************/
-
+/**********************************************************************
+ * Crea la representaciòn Gris en memoria de la imagen color
+ *************************************************/
 grey_image_type * createGreyImage(int width, int height){
   grey_image_type * image = malloc(sizeof(grey_image_type));
   assert(image != NULL);
@@ -80,8 +81,9 @@ grey_image_type * createGreyImage(int width, int height){
   return(image);
 }
 
-/**********************************************************************/
-
+/*********************************************************************
+ * Guardamos la imagen Gris en un nuevo formato
+ * ****************************************************/
 void saveGreyImage(char * filename, grey_image_type *image){
   int i;
   FILE * f = fopen(filename,"w");
@@ -112,6 +114,7 @@ grey_image_type* colorImageToGrey(color_image_type *colorImage){
     r=colorImage->pixels[i].r;
     g=colorImage->pixels[i].g;
     b=colorImage->pixels[i].b;
+    // Utilizamos esta propiedad matematica para convertir los pixeles RGB a Gris
     greyImage->pixels[i] = (299 * r +587 * g + 114 * b) / 1000;
   }
   stop = omp_get_wtime();

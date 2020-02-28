@@ -69,7 +69,6 @@ color_image_type * loadColorImage(char *filename){
 }
 
 /**********************************************************************/
-
 grey_image_type * createGreyImage(int width, int height){
   grey_image_type * image = malloc(sizeof(grey_image_type));
   assert(image != NULL);
@@ -81,7 +80,6 @@ grey_image_type * createGreyImage(int width, int height){
 }
 
 /**********************************************************************/
-
 void saveGreyImage(char * filename, grey_image_type *image){
   int i;
   FILE * f = fopen(filename,"w");
