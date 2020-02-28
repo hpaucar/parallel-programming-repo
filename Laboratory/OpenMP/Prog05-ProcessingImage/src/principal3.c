@@ -150,12 +150,12 @@ grey_image_type* transform(grey_image_type* greyImage){
 #endif
   }
 #ifdef PARALLEL
-  // PODEMOS PARALELAR ESTE LAZO PORQUE CADA INSTRUCCIÓN ES INDEPENDIENTE EN CADA ITERACIÓN DE (i)
+  // PODEMOS PARALIZAR ESTE LAZO PORQUE CADA INSTRUCCIÓN ES INDEPENDIENTE EN CADA ITERACIÓN DE (i)
 #pragma omp parallel for num_threads(PARALLEL) schedule(dynamic, 50)
 #endif
   for (int i = 0; i < NB_PIXELS; i++){
-    for (int j = 0; j <= i; j++){
-      C[i]+=H[j];
+    for (int pixel_j = 0; pixel_j <= i; pixel_j++){
+      C[i]+=H[pixel_j];
     }
   }
 #ifdef PARALLEL
@@ -177,8 +177,8 @@ grey_image_type* transform(grey_image_type* greyImage){
 
 int main(int argc, char* argv[]){
 
-  saveGreyImage("image0_contraste.pgm", transform(colorImageToGrey(loadColorImage("image0.ppm"))));
-  saveGreyImage("image2_contraste.pgm", transform(colorImageToGrey(loadColorImage("image2.ppm"))));
+  saveGreyImage("src/resize/image0_contraste.pgm", transform(colorImageToGrey(loadColorImage("src/image0.ppm"))));
+  saveGreyImage("src/resize/image2_contraste.pgm", transform(colorImageToGrey(loadColorImage("src/image2.ppm"))));
 
 
   return 0;
