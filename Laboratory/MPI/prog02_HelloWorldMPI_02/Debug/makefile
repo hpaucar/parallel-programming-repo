@@ -38,19 +38,19 @@ endif
 # Add inputs and outputs from these tool invocations to the build variables 
 
 # All Target
-all: HelloWorldMPI_02
+all: prog02_HelloWorldMPI_02
 
 # Tool invocations
-HelloWorldMPI_02: $(OBJS) $(USER_OBJS)
+prog02_HelloWorldMPI_02: $(OBJS) $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: GCC C++ Linker'
-	mpic++  -o "HelloWorldMPI_02" $(OBJS) $(USER_OBJS) $(LIBS)
+	mpic++  -o "prog02_HelloWorldMPI_02" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) $(CC_DEPS)$(C++_DEPS)$(EXECUTABLES)$(C_UPPER_DEPS)$(CXX_DEPS)$(OBJS)$(CPP_DEPS)$(C_DEPS) HelloWorldMPI_02
+	-$(RM) $(CC_DEPS)$(C++_DEPS)$(EXECUTABLES)$(C_UPPER_DEPS)$(CXX_DEPS)$(OBJS)$(CPP_DEPS)$(C_DEPS) prog02_HelloWorldMPI_02
 	-@echo ' '
 
 .PHONY: all clean dependents

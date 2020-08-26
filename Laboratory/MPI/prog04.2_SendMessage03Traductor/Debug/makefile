@@ -38,19 +38,19 @@ endif
 # Add inputs and outputs from these tool invocations to the build variables 
 
 # All Target
-all: prog04_SendMessageTraductor
+all: prog04_SendMessage03Traductor
 
 # Tool invocations
-prog04_SendMessageTraductor: $(OBJS) $(USER_OBJS)
+prog04_SendMessage03Traductor: $(OBJS) $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: GCC C++ Linker'
-	mpic++  -o "prog04_SendMessageTraductor" $(OBJS) $(USER_OBJS) $(LIBS)
+	mpic++  -o "prog04_SendMessage03Traductor" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) $(CC_DEPS)$(C++_DEPS)$(EXECUTABLES)$(C_UPPER_DEPS)$(CXX_DEPS)$(OBJS)$(CPP_DEPS)$(C_DEPS) prog04_SendMessageTraductor
+	-$(RM) $(CC_DEPS)$(C++_DEPS)$(EXECUTABLES)$(C_UPPER_DEPS)$(CXX_DEPS)$(OBJS)$(CPP_DEPS)$(C_DEPS) prog04_SendMessage03Traductor
 	-@echo ' '
 
 .PHONY: all clean dependents

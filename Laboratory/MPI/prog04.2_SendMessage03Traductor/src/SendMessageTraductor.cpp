@@ -4,11 +4,12 @@
  Author      : Herminio Paucar
  Version     :
  Copyright   : Your copyright notice
- Description :
+ Description : Traduce los los numeros en días de la semana. i.e "0 es Monday"
+ deberan ingresar 8 como numero de proceso
  Compile Command:
  	$ mpiCC -g -Wall -o <CodeName> <CodeName.cpp>
 	$ mpiexec  ./<CodeName>
-	$ mpiexec -n 10 ./<CodeName>
+	$ mpiexec -n 8 ./<CodeName>
  ============================================================================
  */
 
@@ -33,7 +34,7 @@ int main(int argc, char *argv[])
 
     /* Iniciaizamos el MPI */
     	MPI_Init(NULL, NULL);
-    	/* Calculamos el total de procesadores que vamos a usar*/
+    	/* Obtenemos el total de procesadores que vamos a usar*/
     	MPI_Comm_size(MPI_COMM_WORLD, &comm_sz);
     	/* Seleccionamos cada procesador */
     	MPI_Comm_rank(MPI_COMM_WORLD, &my_rank);
