@@ -24,7 +24,6 @@
  * IPP:   Section 3.2.2 (pp. 96 and ff.)
  */
 #include <stdio.h>
-
 /* We'll be using MPI routines, definitions, etc. */
 #include <mpi.h>
 
@@ -36,8 +35,8 @@ double Trap(double left_endpt, double right_endpt, int trap_count,
 double f(double x); 
 
 int main(void) {
-   int my_rank, comm_sz, n = 1024, local_n;   
-   double a = 0.0, b = 3.0, h, local_a, local_b;
+   int my_rank, comm_sz, n = 1024*1024, local_n;
+   double a = 0.0, b = 300000.0, h, local_a, local_b;
    double local_int, total_int;
    int source; 
 
@@ -100,10 +99,10 @@ int main(void) {
  *               trapezoids
  */
 double Trap(
-      double left_endpt  /* in */, 
-      double right_endpt /* in */, 
-      int    trap_count  /* in */, 
-      double base_len    /* in */) {
+      double left_endpt  /* in (l_a)*/,
+      double right_endpt /* in (l_b)*/,
+      int    trap_count  /* in (l_n)*/,
+      double base_len    /* in (h)*/) {
    double estimate, x; 
    int i;
 
