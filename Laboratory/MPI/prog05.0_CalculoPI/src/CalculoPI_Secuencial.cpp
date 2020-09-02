@@ -1,3 +1,22 @@
+/*
+ * https://es.wikipedia.org/wiki/N%C3%BAmero_%CF%80
+ *  ============================================================================
+ Name        : Calculate PI value
+ Author      : Herminio Paucar
+ Version     :
+ Copyright   : Your copyright notice
+ Description : Paralelizar el calculo de la aproximación del numero PI indicando un
+ factor de precisión. El numero PI se define como la integral 0 a 1 de 4/(1+x*x), es
+ decir, el área que forma.
+ La aproximación de una integral mediante la suma de Riemann permite dividir el trabajo
+ en unidades independientes, siendo un factor de precision el numero de divisiones.
+ El factor de precisión puede pedirlo el proceso 0 y repartirlo a los otros procesos
+ mediante MPI_Bcast. Despues de que cada proceso calcule su parte se han de reunir todas
+ las partes en el proceso 0 para mostrar el resultado con MPI_Reduce.
+ Objetivos	 : Repartir trabajo entre procesos, Aprender a usar MPI_Bcast y
+ 	 	 	   Aprender a usar MPI_Reduce.
+ *
+ * */
 #include <math.h>
 #include <cstdlib> // Incluido para el uso de atoi
 #include <iostream>

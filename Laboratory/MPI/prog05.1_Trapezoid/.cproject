@@ -43,7 +43,7 @@
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
-						<entry excluding="mpi_trap4.c|mpi_trap3.c|mpi_trap2.c|CalculoPI_Secuencial.cpp" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src"/>
+						<entry excluding="mpi_trap1.c|mpi_trap4.c|mpi_trap3.c|CalculoPI_Secuencial.cpp" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src"/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>
@@ -91,7 +91,7 @@
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
-						<entry excluding="mpi_trap4.c|mpi_trap3.c|mpi_trap2.c|CalculoPI_Secuencial.cpp" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src"/>
+						<entry excluding="mpi_trap1.c|mpi_trap4.c|mpi_trap3.c|CalculoPI_Secuencial.cpp" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src"/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>

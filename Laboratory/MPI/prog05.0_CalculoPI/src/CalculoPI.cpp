@@ -57,6 +57,7 @@ int main(int argc, char *argv[])
 			  MPI_INT, // Tipo del dato a enviar
 			  0, // Identificacion del proceso que envia el dato
 			  MPI_COMM_WORLD);
+
 	if (n <= 0){
 		MPI_Finalize();
 		exit(0);
@@ -67,7 +68,7 @@ int main(int argc, char *argv[])
 		for (int i = rank + 1; i <= n; i += size) {
 			double x = h * ((double)i - 0.5);
 			sum += (4.0 / (1.0 + x*x));
-			cout<<endl<<x;
+			//cout<<endl<<x;
 		}
 		mypi = h * sum;
 
@@ -84,10 +85,11 @@ int main(int argc, char *argv[])
 
 		// Solo el proceso 0 imprime el mensaje, ya que es la unica que
 		// conoce el valor de PI aproximado.
-		if (rank == 0)
-			cout << "El valor aproximado de PI es: " << pi
-			 << ", con un error de " << fabs(pi - PI25DT)
-			 << endl;
+		if (rank == 0){
+			printf("PI25DT: %.30f \n", PI25DT);
+			printf("My PI: %.30f \n \n", pi);
+			printf("El valor aproximado de PI es: %f, con un error de %.30f \n", pi,fabs(pi - PI25DT));
+		}
 	}
 
 	// Terminamos la ejecucion de los procesos, despues de esto solo existira
