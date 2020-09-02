@@ -85,7 +85,8 @@ int main(int argc, char *argv[])
 
 		// Solo el proceso 0 imprime el mensaje, ya que es la unica que
 		// conoce el valor de PI aproximado.
-		if (rank == 0){
+		if (rank == 0)
+		{
 			printf("PI25DT: %.30f \n", PI25DT);
 			printf("My PI: %.30f \n \n", pi);
 			printf("El valor aproximado de PI es: %f, con un error de %.30f \n", pi,fabs(pi - PI25DT));
