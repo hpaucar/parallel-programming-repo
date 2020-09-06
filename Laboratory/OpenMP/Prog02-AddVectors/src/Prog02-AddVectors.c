@@ -22,7 +22,7 @@ int main(int argc, char *argv[]) {
 		B[i] = 3;
 	}
 
-	#pragma omp parallel
+	#pragma omp parallel num_threads(4)
 	{
 		int id = omp_get_thread_num();
 		int nt = omp_get_num_threads();
@@ -34,6 +34,7 @@ int main(int argc, char *argv[]) {
 			C[j] = A[j] + B[j];
 		}
 	}
+
 	for (i = 0; i < 2048; i++) {
 		printf("C[%d] = %f \n", i, C[i]);
 	}

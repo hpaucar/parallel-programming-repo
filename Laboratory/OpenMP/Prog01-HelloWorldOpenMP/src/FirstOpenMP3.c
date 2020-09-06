@@ -25,7 +25,7 @@ int main(int argc, char *argv[]) {
 	{
 		int id = omp_get_thread_num();
 		int nt = omp_get_num_threads();
-		printf("\n HW from thread number %d de un total %d \n", id,	nt);
+		printf("HW from thread number %d de un total %d \n", id,	nt);
 	}
 
 	printf("\n 02 Fuera de la region Paralela ...\n");
@@ -34,7 +34,7 @@ int main(int argc, char *argv[]) {
 	{
 		int id = omp_get_thread_num();
 		int nt = omp_get_num_threads();
-		printf("\n HW from thread number %d de un total %d \n", id,	nt);
+		printf("HW from thread number %d de un total %d \n", id,	nt);
 	}
 	return 0;
 }
