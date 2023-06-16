@@ -2,6 +2,9 @@
  * Professor: Herminio P.
  * Author: Emilio Francesquini <e.francesquini@ufabc.edu.br>
  * 2018-10-01
+ * To run: 
+ *  $  gcc -g -Wall -o fastapp FastApplication.cpp
+ *  $  ./fastapp 
  */
 
 #include <stdio.h>
